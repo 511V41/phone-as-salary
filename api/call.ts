@@ -59,5 +59,5 @@ const handler = (req: VercelRequest, res: VercelResponse): Log => {
 export default (req: VercelRequest, res: VercelResponse) => {
   const log = handler(req, res);
   // ログ取り
-  console.info(log);
+  console.log(log);
 };
