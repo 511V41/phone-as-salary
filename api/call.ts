@@ -16,47 +16,53 @@ const getMessage = (body: any): string | undefined => {
 type Log = {
   date: string;
   ipAddress: string;
+  statusCode: number;
   message?: string;
 }
 
-const handler = (req: VercelRequest, res: VercelResponse): Log => {
-  const log = {
+const format = (req: VercelRequest): Log => {
+  const log: Log = {
     date: formatToTimeZone(new Date(), 'YYYY-MM-DD HH:mm:ss', { timeZone: 'Asia/Tokyo' }),
     ipAddress: String(req.headers['x-forwarded-for']),
+    statusCode: 200,
     message: undefined,
   };
   // Allow POST only.
   if (req.method !== 'POST') {
-    error(405, res);
+    log.statusCode = 405;
     return log;
   }
   // Allow application/json only.
   if (!req.body || !req.headers['content-type'] || req.headers['content-type'] !== 'application/json') {
-    error(400, res);
+    log.statusCode = 400;
     return log;
   }
   // Try to get message.
-  const message = getMessage(req.body);
-  if (!message) {
-    error(400, res);
+  log.message = getMessage(req.body);
+  if (!log.message) {
+    log.statusCode = 400;
     return log;
   }
-  log.message = message;
-  // TODO Call API of Twilio.
-  res.json({
-    message: 'success',
-  });
-
   return log;
 };
 
 export default (req: VercelRequest, res: VercelResponse) => {
-  // Handling CORS.
+  // Handling Preflight request.
   if (isPreflight(req.method)) {
     res.status(200).end();
     return;
   }
-  const log = handler(req, res);
+  // Get needed data as Log from request.
+  const log = format(req);
   // Logging
   console.log(log);
+  // Error handling
+  if (log.statusCode !== 200) {
+    error(log.statusCode, res);
+    return;
+  }
+  // TODO Call API of Twilio.
+  res.json({
+    message: 'success',
+  });
 };

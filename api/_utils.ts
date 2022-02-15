@@ -6,5 +6,5 @@ export const error = (code: number, res: VercelResponse) => {
   res.status(code).json({ message: `${code} ${getReasonPhrase(code)}` });
 };
 
-// Handle CORS
+// Extremely slipshod. About Header, read vercel.json.
 export const isPreflight = (method: string): boolean => method === 'OPTIONS';
