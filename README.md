@@ -12,7 +12,7 @@ This repository is developed for the purpose of reproducing that item.
 
 ### Backend
 
-Callings are made by API of [Twilio](https://www.twilio.com). For that reason, Deploy Serverless Functions that is written in TypeScript to [Vercel](https://vercel.com). For example, one that responds [TwiML](https://www.twilio.com/docs/voice/twiml). These source codes are placed in the `api` directory.
+Callings are made by API of [Twilio](https://www.twilio.com). For that reason, Deploy Serverless Functions that is written in TypeScript to [Vercel](https://vercel.com). These source codes are placed in the `api` directory.
 
 #### Environment variable
 
