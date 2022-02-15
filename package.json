@@ -3,8 +3,7 @@
   "version": "0.0.1",
   "description": "mission-chan's salaly",
   "scripts": {
-    "start": "npx tsc -w",
-    "dev": "npx nodemon"
+    "start": "npx tsc -w"
   },
   "author": {
     "name": "511V41",
