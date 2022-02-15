@@ -9,5 +9,6 @@
         { "key": "Access-Control-Allow-Headers", "value": "*" }
       ]
     }
-  ]
+  ],
+  "regions": ["hnd1"]
 }

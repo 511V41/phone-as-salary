@@ -33,10 +33,14 @@ vercel dev
 
 If you want to deploy, you have to import this repository to Vercel. After that, follow [official document](https://vercel.com/docs/concepts/deployments/overview).
 
-#### List of endpoint
+#### endpoint
 
-- POST /api/call
-- ~~GET /api/twiml~~ *TODO*
+`POST /api/call`
+
+```sh
+# Example
+curl -X POST -H "Content-Type: application/json" -d '{"message":"こんにちは世界"}' http://localhost:3000/api/call
+```
 
 ### Frontend
 

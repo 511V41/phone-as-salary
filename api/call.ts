@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { formatToTimeZone } from 'date-fns-timezone';
-import { error, isPreflight } from './_utils';
+import { error, isPreflight, call } from './_utils';
 
 // Get message from body. If it fails, return undefined;
 const getMessage = (body: any): string | undefined => {
@@ -46,7 +46,7 @@ const format = (req: VercelRequest): Log => {
   return log;
 };
 
-export default (req: VercelRequest, res: VercelResponse) => {
+export default async (req: VercelRequest, res: VercelResponse) => {
   // Handling Preflight request.
   if (isPreflight(req.method)) {
     res.status(200).end();
@@ -54,14 +54,21 @@ export default (req: VercelRequest, res: VercelResponse) => {
   }
   // Get needed data as Log from request.
   const log = format(req);
-  // Logging
-  console.log(log);
   // Error handling
   if (log.statusCode !== 200) {
+    console.log(log);
     error(log.statusCode, res);
     return;
   }
-  // TODO Call API of Twilio.
+  // Let's call!
+  const success = await call(log.message).catch(() => false);
+  if (!success) {
+    log.statusCode = 503;
+    console.log(log);
+    error(log.statusCode, res);
+    return;
+  }
+  console.log(log);
   res.json({
     message: 'success',
   });

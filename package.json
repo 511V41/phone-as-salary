@@ -2,9 +2,6 @@
   "name": "phone-as-salaly",
   "version": "0.0.1",
   "description": "mission-chan's salaly",
-  "scripts": {
-    "start": "npx tsc -w"
-  },
   "author": {
     "name": "511V41",
     "email": "yukkuri.sinai@gmail.com",
@@ -12,6 +9,8 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^17.0.18",
+    "@types/xml-escape": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "@vercel/node": "^1.12.1",
@@ -21,6 +20,8 @@
   },
   "dependencies": {
     "date-fns-timezone": "^0.1.4",
-    "http-status-codes": "^2.2.0"
+    "http-status-codes": "^2.2.0",
+    "twilio": "^3.74.0",
+    "xml-escape": "^1.1.0"
   }
 }
