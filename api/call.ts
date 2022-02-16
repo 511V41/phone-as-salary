@@ -18,6 +18,7 @@ type Log = {
   ipAddress: string;
   statusCode: number;
   message?: string;
+  sid?: string;
 }
 
 const format = (req: VercelRequest): Log => {
@@ -26,6 +27,7 @@ const format = (req: VercelRequest): Log => {
     ipAddress: String(req.headers['x-forwarded-for']),
     statusCode: 200,
     message: undefined,
+    sid: undefined,
   };
   // Allow POST only.
   if (req.method !== 'POST') {
@@ -61,8 +63,8 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     return;
   }
   // Let's call!
-  const success = await call(log.message).catch(() => false);
-  if (!success) {
+  log.sid = await call(log.message).catch(() => undefined);
+  if (!log.sid) {
     log.statusCode = 503;
     console.log(log);
     error(log.statusCode, res);
@@ -70,6 +72,6 @@ export default async (req: VercelRequest, res: VercelResponse) => {
   }
   console.log(log);
   res.json({
-    message: 'success',
+    sid: log.sid,
   });
 };
