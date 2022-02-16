@@ -42,11 +42,11 @@ If you want to deploy, you have to import this repository to Vercel. After that,
 curl -X POST -H "Content-Type: application/json" -d '{"message":"こんにちは世界"}' http://localhost:3000/api/call
 ```
 
-Response is liking following.
+Response is like following.
 
 ```json
 {
-  sid: "foo"
+  "sid": "foo"
 }
 ```
 
@@ -54,14 +54,14 @@ Response is liking following.
 
 ```sh
 # Example
-curl http://localhost:3000/api/status?sid=foo
+curl "http://localhost:3000/api/status?sid=foo"
 ```
 
-Response is liking following. Statuses are listed at [here](https://www.twilio.com/docs/voice/api/call-resource#call-status-values).
+Response is like following. Statuses are listed at [here](https://www.twilio.com/docs/voice/api/call-resource#call-status-values).
 
 ```json
 {
-  status: "ringing"
+  "status": "ringing"
 }
 ```
 
