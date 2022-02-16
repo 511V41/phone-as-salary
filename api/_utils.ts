@@ -30,3 +30,15 @@ export const call = async (message: string): Promise<string | undefined> => {
   });
   return sid;
 };
+
+// Get status of calling. About status: https://www.twilio.com/docs/voice/api/call-resource#call-status-values
+export const getStatus = async (sid: string): Promise<string | undefined> => {
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const token = process.env.TWILIO_AUTH_TOKEN;
+  if (!accountSid || !token) {
+    return undefined;
+  }
+  const twilio = Twilio(accountSid, token);
+  const response = await twilio.calls(sid).fetch();
+  return response.status;
+};

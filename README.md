@@ -33,13 +33,36 @@ vercel dev
 
 If you want to deploy, you have to import this repository to Vercel. After that, follow [official document](https://vercel.com/docs/concepts/deployments/overview).
 
-#### endpoint
+#### endpoints
 
 `POST /api/call`
 
 ```sh
 # Example
 curl -X POST -H "Content-Type: application/json" -d '{"message":"こんにちは世界"}' http://localhost:3000/api/call
+```
+
+Response is liking following.
+
+```json
+{
+  sid: "foo"
+}
+```
+
+`GET /api/status`
+
+```sh
+# Example
+curl http://localhost:3000/api/status?sid=foo
+```
+
+Response is liking following. Statuses are listed at [here](https://www.twilio.com/docs/voice/api/call-resource#call-status-values).
+
+```json
+{
+  status: "ringing"
+}
 ```
 
 ### Frontend
