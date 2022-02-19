@@ -1,5 +1,9 @@
 {
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/404" }],
+  "name": "phone-as-salaly",
+  "version": 2,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/404" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
@@ -10,5 +14,7 @@
       ]
     }
   ],
-  "regions": ["hnd1"]
+  "regions": ["hnd1"],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
