@@ -8,19 +8,30 @@
     "url": "https://511v41.github.io/"
   },
   "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "tsc && yarn clean && vite build"
+  },
   "devDependencies": {
     "@types/node": "^17.0.18",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.11",
     "@types/xml-escape": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "@vercel/node": "^1.12.1",
+    "@vitejs/plugin-react": "^1.2.0",
     "eslint": "^8.9.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4"
+    "eslint-plugin-import": "^2.25.4",
+    "typescript": "^4.5.5",
+    "vite": "^2.8.4"
   },
   "dependencies": {
     "date-fns-timezone": "^0.1.4",
     "http-status-codes": "^2.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "twilio": "^3.74.0",
     "xml-escape": "^1.1.0"
   }
