@@ -8,9 +8,6 @@ export const error = (code: number, res: VercelResponse) => {
   res.status(code).json({ message: `${code} ${getReasonPhrase(code)}` });
 };
 
-// Extremely slipshod. About Header, read vercel.json.
-export const isPreflight = (method: string): boolean => method === 'OPTIONS';
-
 // Generate TwiML and call API of Twilio.
 export const call = async (message: string): Promise<string | undefined> => {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;

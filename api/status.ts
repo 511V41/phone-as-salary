@@ -1,12 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { error, isPreflight, getStatus } from './_utils';
+import { error, getStatus } from './_utils';
 
 export default async (req: VercelRequest, res: VercelResponse) => {
-  // Handling Preflight request.
-  if (isPreflight(req.method)) {
-    res.status(200).end();
-    return;
-  }
   // Allow GET only.
   if (req.method !== 'GET') {
     error(405, res);
