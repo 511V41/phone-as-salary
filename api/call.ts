@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { formatToTimeZone } from 'date-fns-timezone';
-import { error, isPreflight, call } from './_utils';
+import { error, call } from './_utils';
 
 // Get message from body. If it fails, return undefined;
 const getMessage = (body: any): string | undefined => {
@@ -49,11 +49,6 @@ const format = (req: VercelRequest): Log => {
 };
 
 export default async (req: VercelRequest, res: VercelResponse) => {
-  // Handling Preflight request.
-  if (isPreflight(req.method)) {
-    res.status(200).end();
-    return;
-  }
   // Get needed data as Log from request.
   const log = format(req);
   // Error handling
@@ -63,7 +58,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     return;
   }
   // Let's call!
-  log.sid = await call(log.message).catch(() => undefined);
+  log.sid = await call(String(log.message)).catch(() => undefined);
   if (!log.sid) {
     log.statusCode = 503;
     console.log(log);

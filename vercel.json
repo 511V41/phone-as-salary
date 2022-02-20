@@ -1,14 +1,10 @@
 {
-  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/404" }],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Credentials", "value": "true" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Headers", "value": "*" }
-      ]
-    }
+  "name": "phone-as-salary",
+  "version": 2,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/api/404" }
   ],
-  "regions": ["hnd1"]
+  "regions": ["hnd1"],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
