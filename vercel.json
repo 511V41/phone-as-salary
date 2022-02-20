@@ -1,5 +1,5 @@
 {
-  "name": "phone-as-salaly",
+  "name": "phone-as-salary",
   "version": 2,
   "rewrites": [
     { "source": "/(.*)", "destination": "/api/404" }

@@ -1,4 +1,4 @@
-# Phone as salaly
+# Phone as salary
 
 Provide form and API that can make prank call with synthesized voice to your own phone number.
 
