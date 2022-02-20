@@ -12,7 +12,6 @@ import axios from 'axios';
 const finishedStatuses = ['canceled', 'completed', 'busy', 'no-answer', 'failed'];
 // Really I'm sorry to using any.
 const statusToChip: any = {
-  // <Chip icon={<MdPhone />} label="Call me" />
   queued: <Chip icon={<PhoneForwarded />} label='Waiting...' />,
   ringing: <Chip icon={<PhoneForwarded />} label='Ringing...' />,
   'in-progress': <Chip icon={<PhoneInTalk />} label='Calling...' />,
