@@ -67,9 +67,7 @@ Response is like following. Statuses are listed at [here](https://www.twilio.com
 
 ### Frontend
 
-*TODO*
-
-~~The frontend consists TypeScript that is using [Vite](https://vitejs.dev) and [React](https://reactjs.org/). These source codes are placed in the `front` directory.~~
+The frontend consists TypeScript that is using [Vite](https://vitejs.dev) and [React](https://reactjs.org/). These source codes are placed in the `src` directory.
 
 ## Licence
 
