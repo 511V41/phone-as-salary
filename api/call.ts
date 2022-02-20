@@ -58,7 +58,7 @@ export default async (req: VercelRequest, res: VercelResponse) => {
     return;
   }
   // Let's call!
-  log.sid = await call(log.message).catch(() => undefined);
+  log.sid = await call(String(log.message)).catch(() => undefined);
   if (!log.sid) {
     log.statusCode = 503;
     console.log(log);
