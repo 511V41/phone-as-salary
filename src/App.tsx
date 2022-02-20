@@ -101,6 +101,7 @@ export default () => {
             label="Message for Mission-chan."
             variant="standard"
             fullWidth
+            autoComplete='off'
             value={message}
             error={helperText !== ''}
             helperText={helperText !== '' ? helperText : `${message.length} / 140`}
