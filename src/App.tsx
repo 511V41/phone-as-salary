@@ -22,25 +22,24 @@ const statusToChip: any = {
   canceled: <Chip icon={<PhoneMissed />} label='Failed. Reason: canceled' />,
 };
 
+// Message must be 140 characters or less. like Twitter!
+const maxMessageLength = 140;
+
 export default () => {
   // state
   const [message, setMessage] = useState('');
-  const [disabled, setDisabled] = useState(false);
-  const [helperText, setHelperText] = useState('');
   const [callStatus, setCallStatus] = useState('');
   const [error, setError] = useState('');
   // Let's call!
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (helperText !== '' || message === '') {
+    if (message.length > maxMessageLength || message === '') {
       return;
     }
-    setDisabled(true);
     setCallStatus('queued');
     const reset = () => {
       // Delay to show status.
       setTimeout(() => {
-        setDisabled(false);
         setMessage('');
         setCallStatus('');
         setError('');
@@ -102,18 +101,12 @@ export default () => {
             fullWidth
             autoComplete='off'
             value={message}
-            error={helperText !== ''}
-            helperText={helperText !== '' ? helperText : `${message.length} / 140`}
-            disabled={disabled}
+            error={message.length > maxMessageLength}
+            helperText={message.length > maxMessageLength ? `Message must be ${maxMessageLength} characters or less. Current length is ${message.length}.` : `${message.length} / ${maxMessageLength}`}
+            disabled={callStatus !== '' || error !== ''}
             onChange={(event) => {
               const { value } = event.target;
-              setMessage(event.target.value);
-              // Like twitter!
-              if (value.length > 140) {
-                setHelperText(`Messages must be 140 characters or less. Current length is ${value.length}.`);
-              } else if (helperText !== '') {
-                setHelperText('');
-              }
+              setMessage(value);
             }}
           />
         </Box>
@@ -127,7 +120,7 @@ export default () => {
         {error !== '' && (
           <Box sx={{ mt: 2 }}>
             <Typography variant="body1" gutterBottom align="center">
-            <Chip icon={<Error />} label={error} color="error" />
+              <Chip icon={<Error />} label={error} color="error" />
             </Typography>
           </Box>
         )}
