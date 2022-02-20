@@ -125,7 +125,7 @@ export default () => {
           </Box>
         )}
         {error !== '' && (
-            <Box sx={{ mt: 2 }}>
+          <Box sx={{ mt: 2 }}>
             <Typography variant="body1" gutterBottom align="center">
             <Chip icon={<Error />} label={error} color="error" />
             </Typography>
