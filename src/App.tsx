@@ -143,7 +143,7 @@ export default () => {
       >
         <Typography variant="body2" color="white" align="center">
           {'Copyright © '}
-          <Link rel="noreferrer" href="https://511v41.github.io">
+          <Link color={blueGrey[50]} rel="noreferrer" href="https://511v41.github.io">
             511V41
           </Link>{' '}
             {new Date().getFullYear()}
