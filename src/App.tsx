@@ -69,6 +69,10 @@ export default () => {
     };
     call().then(() => {
       reset();
+    }).catch((e) => {
+      setError('Some error has occurred. To check more detail, Open developer console.');
+      console.error(e);
+      reset();
     });
   };
   return (
