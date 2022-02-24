@@ -6,7 +6,7 @@ Provide form and API that can make prank call with synthesized voice to your own
 
 ## Story
 
-In Japanese old web comic "Mission-chan's Great Adventure", Main character who is called "Mission-chan" obtains a black rotary dial phone as salary. However, it can't make a call, so she can only receive calls from someone somewhere.
+In Japanese old web comic "Mission-chan's Great Adventure", main character who is called "Mission-chan" obtains a black rotary dial phone as salary. However, it can't make a call, so she can only receive calls from someone somewhere.
 
 This repository is developed for the purpose of reproducing that item.
 
@@ -14,7 +14,7 @@ This repository is developed for the purpose of reproducing that item.
 
 ### Backend
 
-Callings are made by API of [Twilio](https://www.twilio.com). For that reason, Deploy Serverless Functions that is written in TypeScript to [Vercel](https://vercel.com). These source codes are placed in the `api` directory.
+Callings are made by API of [Twilio](https://www.twilio.com). For that reason, deploy Serverless Functions that are written in TypeScript to [Vercel](https://vercel.com). These source codes are placed in the `api` directory.
 
 #### endpoints
 
@@ -50,13 +50,13 @@ Response is like following. Statuses are listed at [here](https://www.twilio.com
 
 ### Frontend
 
-The frontend consists TypeScript that is using [Vite](https://vitejs.dev) and [React](https://reactjs.org/). These source codes are placed in the `src` directory.
+The frontend consists of TypeScript which uses [Vite](https://vitejs.dev) and [React](https://reactjs.org/). These source codes are placed in the `src` directory.
 
 ### How to run
 
-At first, You have to install [Vercel CLI](https://vercel.com/docs/cli) and import this repository to [Vercel](https://vercel.com).
+At first, you have to install [Vercel CLI](https://vercel.com/docs/cli) and import this repository to [Vercel](https://vercel.com).
 
-And You have to set following environment variables to Project. If you don't know how to set those, refer to [official document](https://vercel.com/support/articles/how-to-add-vercel-environment-variables).
+And you have to set following environment variables to Project. If you don't know how to set those, refer to [official document](https://vercel.com/support/articles/how-to-add-vercel-environment-variables).
 
 - TWILIO_ACCOUNT_SID
 - TWILIO_AUTH_TOKEN
@@ -75,5 +75,5 @@ vercel dev
 
 #### Cautionary points
 
-- Unless you are billionaire, You should disable automatic recharge of Twilio.
-- To perpetuating logs, You have to install integration. I recommend [Flogtail](https://vercel.com/integrations/flogtail).
+- Unless you are a billionaire, you should disable the automatic recharge of Twilio.
+- To perpetuate logs, you have to install integration. I recommend [Flogtail](https://vercel.com/integrations/flogtail).
