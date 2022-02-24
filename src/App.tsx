@@ -17,21 +17,21 @@ const finishedStatuses = ['canceled', 'completed', 'busy', 'no-answer', 'failed'
 
 const statusToAlert = (status: string) => {
   switch (status) {
-    case 'queued':
-      return <Alert variant="outlined" severity="info" icon={<PhoneForwardedOutlined fontSize="inherit" />}>In preparation to make a call.</Alert>;
-    case 'ringing':
-      return <Alert variant="outlined" severity="info" icon={<PhoneForwardedOutlined fontSize="inherit" />}>Mission-chan's phone is ringing.</Alert>;
-    case 'in-progress':
-      return <Alert variant="outlined" severity="info" icon={<PhoneInTalkOutlined fontSize="inherit" />}>Mission-chan is on a call right now.</Alert>;
-    case 'completed':
-      return <Alert variant="outlined" severity="success" icon={<LocalPhoneOutlined fontSize="inherit" />}>Done! Calling was succeeded.</Alert>;
-    case 'busy':
-    case 'failed':
-    case 'no-answer':
-    case 'canceled':
-      return <Alert variant="outlined" severity="error" icon={<PhoneMissedOutlined fontSize="inherit" />}>{`Calling was failed. Reason: ${status}.`}</Alert>;
-    default:
-      return <></>;
+  case 'queued':
+    return <Alert variant="outlined" severity="info" icon={<PhoneForwardedOutlined fontSize="inherit" />}>In preparation to make a call.</Alert>;
+  case 'ringing':
+    return <Alert variant="outlined" severity="info" icon={<PhoneForwardedOutlined fontSize="inherit" />}>Mission-chan's phone is ringing.</Alert>;
+  case 'in-progress':
+    return <Alert variant="outlined" severity="info" icon={<PhoneInTalkOutlined fontSize="inherit" />}>Mission-chan is on a call right now.</Alert>;
+  case 'completed':
+    return <Alert variant="outlined" severity="success" icon={<LocalPhoneOutlined fontSize="inherit" />}>Done! Calling was succeeded.</Alert>;
+  case 'busy':
+  case 'failed':
+  case 'no-answer':
+  case 'canceled':
+    return <Alert variant="outlined" severity="error" icon={<PhoneMissedOutlined fontSize="inherit" />}>{`Calling was failed. Reason: ${status}.`}</Alert>;
+  default:
+    return <></>;
   }
 };
 
@@ -156,8 +156,8 @@ export default () => {
           <Link color={blueGrey[50]} rel="noreferrer" href="https://511v41.github.io">
             511V41
           </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
+          {new Date().getFullYear()}
+          {'.'}
         </Typography>
       </Box>
     </Box>
