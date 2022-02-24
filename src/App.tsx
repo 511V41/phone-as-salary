@@ -129,16 +129,12 @@ export default () => {
         </Box>
         {callStatus !== '' && error === '' && (
           <Box sx={{ mt: 2 }}>
-            <Typography variant="body1" gutterBottom align="center">
-              {statusToAlert(callStatus)}
-            </Typography>
+            {statusToAlert(callStatus)}
           </Box>
         )}
         {error !== '' && (
           <Box sx={{ mt: 2 }}>
-            <Typography variant="body1" gutterBottom align="center">
-              <Alert variant="outlined" severity="error" icon={<ErrorOutline fontSize="inherit" />}>{error}</Alert>
-            </Typography>
+            <Alert variant="outlined" severity="error" icon={<ErrorOutline fontSize="inherit" />}>{error}</Alert>
           </Box>
         )}
       </Container>
