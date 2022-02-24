@@ -1,6 +1,6 @@
 # Phone as salary
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen?style=flat-square)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen?style=flat-square)](/LICENSE)
 
 Provide form and API that can make prank call with synthesized voice to your own phone number.
 
