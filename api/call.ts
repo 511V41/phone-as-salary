@@ -8,8 +8,7 @@ const getMessage = (body: any): string | undefined => {
   if (!message || typeof message !== 'string') {
     return undefined;
   }
-  // The length of message is limited to 140. like Twitter.
-  return String(message).substr(0, 140);
+  return message;
 };
 
 // Type of log.
@@ -41,7 +40,8 @@ const format = (req: VercelRequest): Log => {
   }
   // Try to get message.
   log.message = getMessage(req.body);
-  if (!log.message) {
+  // Message must be 140 characters or less. like Twitter!
+  if (!log.message || log.message.length > 140) {
     log.statusCode = 400;
     return log;
   }
