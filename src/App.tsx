@@ -1,25 +1,38 @@
 import React, { useState } from 'react';
 import {
-  Box, Chip, CssBaseline, Container, Link, TextField, Typography,
+  Alert, Box, CssBaseline, Container, Link, TextField, Typography,
 } from '@mui/material';
 import { blueGrey } from '@mui/material/colors';
 import {
-  Error, Phone, PhoneForwarded, PhoneInTalk, PhoneMissed,
+  ErrorOutline,
+  LocalPhoneOutlined,
+  PhoneForwardedOutlined,
+  PhoneInTalkOutlined,
+  PhoneMissedOutlined,
 } from '@mui/icons-material';
 import axios from 'axios';
 
 // Statuses are listed at https://www.twilio.com/docs/voice/api/call-resource#call-status-values
 const finishedStatuses = ['canceled', 'completed', 'busy', 'no-answer', 'failed'];
-// Really I'm sorry to using any.
-const statusToChip: any = {
-  queued: <Chip icon={<PhoneForwarded />} label='Waiting...' />,
-  ringing: <Chip icon={<PhoneForwarded />} label='Ringing...' />,
-  'in-progress': <Chip icon={<PhoneInTalk />} label='Calling...' />,
-  completed: <Chip icon={<Phone />} label='Done!' />,
-  busy: <Chip icon={<PhoneMissed />} label='Failed. Reason: busy' />,
-  failed: <Chip icon={<PhoneMissed />} label='Failed. Reason: failed' />,
-  'no-answer': <Chip icon={<PhoneMissed />} label='Failed. Reason: no-answer' />,
-  canceled: <Chip icon={<PhoneMissed />} label='Failed. Reason: canceled' />,
+
+const statusToAlert = (status: string) => {
+  switch (status) {
+    case 'queued':
+      return <Alert variant="outlined" severity="info" icon={<PhoneForwardedOutlined fontSize="inherit" />}>In preparation to make a call.</Alert>;
+    case 'ringing':
+      return <Alert variant="outlined" severity="info" icon={<PhoneForwardedOutlined fontSize="inherit" />}>Mission-chan's phone is ringing.</Alert>;
+    case 'in-progress':
+      return <Alert variant="outlined" severity="info" icon={<PhoneInTalkOutlined fontSize="inherit" />}>Mission-chan is on a call right now.</Alert>;
+    case 'completed':
+      return <Alert variant="outlined" severity="success" icon={<LocalPhoneOutlined fontSize="inherit" />}>Done! Calling was succeeded.</Alert>;
+    case 'busy':
+    case 'failed':
+    case 'no-answer':
+    case 'canceled':
+      return <Alert variant="outlined" severity="error" icon={<PhoneMissedOutlined fontSize="inherit" />}>{`Calling was failed. Reason: ${status}.`}</Alert>;
+    default:
+      return <></>;
+  }
 };
 
 // Message must be 140 characters or less. like Twitter!
@@ -56,7 +69,7 @@ export default () => {
       for (;;) {
         const statusResponse = await axios.get(`/api/status?sid=${sid}`);
         if (statusResponse.status !== 200) {
-          setError('Couldn\'t get status. To check more detail, Open developer console.');
+          setError('Couldn\'t get status. To check more detail, open developer console.');
           console.error(statusResponse);
           break;
         }
@@ -70,7 +83,7 @@ export default () => {
     call().then(() => {
       reset();
     }).catch((e) => {
-      setError('Some error has occurred. To check more detail, Open developer console.');
+      setError('Some error has occurred. To check more detail, open developer console.');
       console.error(e);
       reset();
     });
@@ -117,14 +130,14 @@ export default () => {
         {callStatus !== '' && error === '' && (
           <Box sx={{ mt: 2 }}>
             <Typography variant="body1" gutterBottom align="center">
-              {statusToChip[callStatus]}
+              {statusToAlert(callStatus)}
             </Typography>
           </Box>
         )}
         {error !== '' && (
           <Box sx={{ mt: 2 }}>
             <Typography variant="body1" gutterBottom align="center">
-              <Chip icon={<Error />} label={error} color="error" />
+              <Alert variant="outlined" severity="error" icon={<ErrorOutline fontSize="inherit" />}>{error}</Alert>
             </Typography>
           </Box>
         )}
